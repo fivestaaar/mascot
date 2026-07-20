@@ -8,253 +8,184 @@
 
 <title>Erhu Mascot</title>
 
-
 <style>
 
 
 body{
 
-    margin:0;
+margin:0;
 
-    display:flex;
+display:flex;
 
-    justify-content:center;
+justify-content:center;
 
-    align-items:center;
+align-items:center;
 
-    height:100vh;
+height:100vh;
 
-    background:transparent;
+background:transparent;
 
 }
-
 
 
 #container{
 
-    position:relative;
+position:relative;
 
-    display:inline-block;
+display:inline-block;
 
 }
-
 
 
 #mascot{
 
-    width:180px;
+width:180px;
 
-    cursor:pointer;
+cursor:pointer;
 
 }
-
 
 
 /* 吹き出し */
 
 #balloon{
 
+position:absolute;
 
-    position:absolute;
+top:-70px;
 
+left:100px;
 
-    top:-70px;
+background:#fffaf0;
 
+padding:12px 18px;
 
-    left:100px;
+border-radius:25px;
 
+border:3px solid #d8a45d;
 
-    background:#fffaf0;
+font-size:18px;
 
+font-weight:bold;
 
-    padding:12px 18px;
+color:#7a4b20;
 
+box-shadow:0 5px 10px rgba(0,0,0,0.15);
 
-    border-radius:25px;
-
-
-    border:3px solid #d8a45d;
-
-
-    font-size:18px;
-
-
-    font-weight:bold;
-
-
-    color:#7a4b20;
-
-
-    display:none;
-
-
-    box-shadow:0 5px 10px rgba(0,0,0,0.15);
-
-
-    transform:scale(0);
-
-
-    transform-origin:bottom left;
-
+display:none;
 
 }
 
 
+/* 吹き出しのしっぽ */
 
 #balloon::after{
 
+content:"";
 
-    content:"";
+position:absolute;
 
+left:25px;
 
-    position:absolute;
+bottom:-15px;
 
+border-width:15px 15px 0 15px;
 
-    left:25px;
+border-style:solid;
 
-
-    bottom:-15px;
-
-
-    border-width:15px 15px 0 15px;
-
-
-    border-style:solid;
-
-
-    border-color:#d8a45d transparent transparent transparent;
-
+border-color:#d8a45d transparent transparent transparent;
 
 }
 
 
-
-/* 吹き出し登場 */
-
-@keyframes pop{
-
-
-    0%{
-
-        transform:scale(0);
-
-    }
-
-
-    70%{
-
-        transform:scale(1.15);
-
-    }
-
-
-    100%{
-
-        transform:scale(1);
-
-    }
-
-
-}
-
-
+/* 吹き出し表示 */
 
 .show{
 
-    display:block !important;
+display:block !important;
 
-    animation:pop 0.4s ease;
+animation:pop 0.3s ease;
+
+}
+
+
+@keyframes pop{
+
+0%{
+
+transform:scale(0);
+
+}
+
+80%{
+
+transform:scale(1.1);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
 
 }
 
 
 
-/* 初回ゆらゆら */
+/* 揺れ */
+
+.shake{
+
+animation:shake 0.8s ease;
+
+}
+
+
 
 @keyframes shake{
 
 
-    0%{
+0%{
 
-        transform:translateY(0) rotate(0deg);
-
-    }
-
-
-    25%{
-
-        transform:translateY(-8px) rotate(5deg);
-
-    }
-
-
-    50%{
-
-        transform:translateY(0) rotate(0deg);
-
-    }
-
-
-    75%{
-
-        transform:translateY(-5px) rotate(-5deg);
-
-    }
-
-
-    100%{
-
-        transform:translateY(0) rotate(0deg);
-
-    }
-
+transform:rotate(0deg);
 
 }
 
 
+20%{
 
-.shake{
-
-    animation:shake 3s ease;
-
-}
-
-
-
-/* クリックジャンプ */
-
-.jump{
-
-
-    animation:jump 0.5s ease;
-
+transform:rotate(8deg);
 
 }
 
 
+40%{
 
-@keyframes jump{
+transform:rotate(-8deg);
 
-
-    0%{
-
-        transform:translateY(0);
-
-    }
+}
 
 
-    50%{
+60%{
 
-        transform:translateY(-20px);
+transform:rotate(6deg);
 
-    }
+}
 
 
-    100%{
+80%{
 
-        transform:translateY(0);
+transform:rotate(-4deg);
 
-    }
+}
+
+
+100%{
+
+transform:rotate(0deg);
+
+}
 
 
 }
@@ -264,7 +195,6 @@ body{
 
 
 </head>
-
 
 
 <body>
@@ -279,145 +209,126 @@ id="mascot"
 
 src="mascot.jpeg"
 
-alt="マスコット"
-
-
-
->
-
+alt="マスコット">
 
 
 <div id="balloon">
 
 <span id="message">你好</span>
 
-
 </div>
 
 
-
 </div>
-
-
 
 
 
 <script>
 
 
-const mascot = document.getElementById("mascot");
+const mascot=document.getElementById("mascot");
 
-const balloon = document.getElementById("balloon");
+const balloon=document.getElementById("balloon");
 
-const message = document.getElementById("message");
-
-
+const message=document.getElementById("message");
 
 
 
-// 初回表示
+// 吹き出し表示関数
+
+function showBalloon(text){
+
+
+message.textContent=text;
+
+
+balloon.classList.remove("show");
+
+
+void balloon.offsetWidth;
+
+
+balloon.classList.add("show");
+
+
+
+setTimeout(()=>{
+
+
+balloon.classList.remove("show");
+
+
+},3000);
+
+
+}
+
+
+
+// 揺れ関数
+
+function shakeMascot(){
+
+
+mascot.classList.remove("shake");
+
+
+void mascot.offsetWidth;
+
+
+mascot.classList.add("shake");
+
+
+}
+
+
+
+// 初回
 
 window.onload=function(){
 
 
-    mascot.classList.add("shake");
+showBalloon("你好");
 
 
-    balloon.classList.add("show");
-
-
-
-    setTimeout(function(){
-
-
-        balloon.classList.remove("show");
-
-
-    },3000);
-
+shakeMascot();
 
 
 };
 
 
 
-
-
-
-// クリック時の言葉
-
+// クリック時
 
 const words=[
 
+"ようこそ",
 
-    "ようこそ",
+"2026年で35周年",
 
+"二胡レッスン！",
 
-    "2026年で35周年",
-
-
-    "二胡レッスン！",
-
-
-    "ニコニコ"
-
+"ニコニコ"
 
 ];
-
-
-
 
 
 
 mascot.onclick=function(){
 
 
+const random=Math.floor(
 
-    const random=Math.floor(
+Math.random()*words.length
 
-        Math.random()*words.length
-
-    );
-
-
-
-    message.textContent=words[random];
+);
 
 
 
-    // ジャンプ再実行
-
-    mascot.classList.remove("jump");
+showBalloon(words[random]);
 
 
-    void mascot.offsetWidth;
-
-
-    mascot.classList.add("jump");
-
-
-
-    // 吹き出し再表示
-
-    balloon.classList.remove("show");
-
-
-    void balloon.offsetWidth;
-
-
-    balloon.classList.add("show");
-
-
-
-
-    setTimeout(function(){
-
-
-        balloon.classList.remove("show");
-
-
-    },3000);
-
+shakeMascot();
 
 
 };
@@ -427,8 +338,6 @@ mascot.onclick=function(){
 </script>
 
 
-
 </body>
-
 
 </html>
