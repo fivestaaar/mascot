@@ -11,23 +11,19 @@
 
 <style>
 
-
 html,body{
 
 margin:0;
-
 padding:0;
 
 width:100%;
-
-height:100%;
+height:300px;
 
 overflow:hidden;
 
 background:transparent;
 
 }
-
 
 
 body{
@@ -48,7 +44,7 @@ position:relative;
 
 width:220px;
 
-height:240px;
+height:260px;
 
 display:flex;
 
@@ -66,7 +62,7 @@ overflow:visible;
 
 width:180px;
 
-max-width:70vw;
+max-width:80vw;
 
 cursor:pointer;
 
@@ -82,11 +78,13 @@ cursor:pointer;
 position:absolute;
 
 
-top:-60px;
+top:-70px;
 
-left:45%;
 
-transform:translateX(-50%);
+left:0;
+
+
+width:180px;
 
 
 background:#fffaf0;
@@ -116,8 +114,9 @@ box-shadow:0 5px 10px rgba(0,0,0,0.15);
 display:none;
 
 
-width:160px;
 text-align:center;
+
+
 line-height:1.5;
 
 
@@ -128,6 +127,9 @@ z-index:10;
 
 
 
+
+/* 吹き出しのしっぽ */
+
 #balloon::after{
 
 
@@ -137,7 +139,7 @@ content:"";
 position:absolute;
 
 
-left:25px;
+left:80px;
 
 
 bottom:-15px;
@@ -156,7 +158,7 @@ border-color:#d8a45d transparent transparent transparent;
 
 
 
-/* 吹き出し表示 */
+/* 表示アニメーション */
 
 .show{
 
@@ -194,6 +196,7 @@ transform:scale(1);
 
 
 }
+
 
 
 
@@ -257,14 +260,15 @@ transform:rotate(0deg);
 
 
 
-
 </style>
 
 
 </head>
 
 
+
 <body>
+
 
 
 <div id="container">
@@ -330,7 +334,9 @@ balloon.classList.remove("show");
 },3000);
 
 
+
 }
+
 
 
 
@@ -353,7 +359,8 @@ mascot.classList.add("shake");
 
 
 
-// 初回
+
+// 初回表示
 
 window.onload=function(){
 
@@ -369,19 +376,18 @@ shakeMascot();
 
 
 
-// クリック時
+
+
+// クリックメッセージ
 
 const words=[
 
 
 "ようこそ",
 
-
 "2026年でデビュー35周年",
 
-
 "二胡レッスン！",
-
 
 "ニコニコ"
 
@@ -390,7 +396,10 @@ const words=[
 
 
 
+
+
 mascot.onclick=function(){
+
 
 
 const random=Math.floor(
@@ -405,6 +414,7 @@ showBalloon(words[random]);
 
 
 shakeMascot();
+
 
 
 };
