@@ -77,50 +77,37 @@ cursor:pointer;
 
 position:absolute;
 
+top:-80px;
 
-top:-70px;
-
-
-left:0;
-
+left:50%;
 
 width:180px;
 
+transform:translateX(-50%);
 
 background:#fffaf0;
 
-
 padding:10px 15px;
-
 
 border-radius:25px;
 
-
 border:3px solid #d8a45d;
-
 
 font-size:16px;
 
-
 font-weight:bold;
-
 
 color:#7a4b20;
 
-
 box-shadow:0 5px 10px rgba(0,0,0,0.15);
-
 
 display:none;
 
-
 text-align:center;
-
 
 line-height:1.5;
 
-
-z-index:10;
+z-index:10;;
 
 
 }
@@ -175,23 +162,15 @@ animation:pop 0.3s ease;
 
 
 0%{
-
-transform:scale(0);
-
+transform:translateX(-50%) scale(0);
 }
-
 
 80%{
-
-transform:scale(1.1);
-
+transform:translateX(-50%) scale(1.1);
 }
 
-
 100%{
-
-transform:scale(1);
-
+transform:translateX(-50%) scale(1);
 }
 
 
