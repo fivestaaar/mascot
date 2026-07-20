@@ -63,6 +63,44 @@ body{
 
 }
 
+    @keyframes shake {
+
+0%{
+transform:rotate(0deg);
+}
+
+25%{
+transform:rotate(5deg);
+}
+
+50%{
+transform:rotate(0deg);
+}
+
+75%{
+transform:rotate(-5deg);
+}
+
+100%{
+transform:rotate(0deg);
+}
+
+}
+
+
+.shake{
+
+animation:shake 3s ease-in-out;
+
+}
+
+
+.show{
+
+display:block !important;
+
+}
+
 </style>
 
 </head>
@@ -78,11 +116,64 @@ alt="マスコット">
 
 <div id="balloon">
 
-你好
+<span id="message">你好</span>
 
 </div>
 
 </div>
+
+    <script>
+
+const mascot = document.getElementById("mascot");
+const balloon = document.getElementById("balloon");
+const message = document.getElementById("message");
+
+
+window.onload=function(){
+
+balloon.classList.add("show");
+
+mascot.classList.add("shake");
+
+
+setTimeout(function(){
+
+balloon.classList.remove("show");
+
+},3000);
+
+};
+
+
+
+const words=[
+
+"ようこそ",
+
+"2026年で35周年",
+
+"二胡レッスン！",
+
+"ニコニコ"
+
+];
+
+
+mascot.onclick=function(){
+
+const random=Math.floor(
+Math.random()*words.length
+);
+
+
+message.textContent=words[random];
+
+balloon.classList.add("show");
+
+};
+
+
+</script>
 
 </body>
 
