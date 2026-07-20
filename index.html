@@ -8,12 +8,29 @@
 
 <title>Erhu Mascot</title>
 
+
 <style>
 
 
-body{
+html,body{
 
 margin:0;
+
+padding:0;
+
+width:100%;
+
+height:100%;
+
+overflow:hidden;
+
+background:transparent;
+
+}
+
+
+
+body{
 
 display:flex;
 
@@ -21,94 +38,125 @@ justify-content:center;
 
 align-items:center;
 
-height:300px;
-
-  overflow:hidden;
-
-background:transparent;
-
 }
+
 
 
 #container{
 
 position:relative;
 
-display:inline-block;
+width:260px;
+
+height:260px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:visible;
 
 }
+
 
 
 #mascot{
 
 width:180px;
 
+max-width:70vw;
+
 cursor:pointer;
 
 }
+
 
 
 /* 吹き出し */
 
 #balloon{
 
+
 position:absolute;
 
-top:-50px;
 
-left:80px;
+top:20px;
+
+
+left:170px;
+
 
 background:#fffaf0;
 
+
 padding:12px 25px;
+
 
 border-radius:25px;
 
+
 border:3px solid #d8a45d;
+
 
 font-size:18px;
 
+
 font-weight:bold;
+
 
 color:#7a4b20;
 
+
 box-shadow:0 5px 10px rgba(0,0,0,0.15);
+
 
 display:none;
 
-min-width:160px;
-
-text-align:center;
 
 white-space:nowrap;
 
+
+z-index:10;
+
+
 }
 
 
-/* 吹き出しのしっぽ */
 
 #balloon::after{
 
+
 content:"";
+
 
 position:absolute;
 
+
 left:25px;
+
 
 bottom:-15px;
 
+
 border-width:15px 15px 0 15px;
+
 
 border-style:solid;
 
+
 border-color:#d8a45d transparent transparent transparent;
 
+
 }
+
 
 
 /* 吹き出し表示 */
 
 .show{
+
 
 display:block !important;
 
@@ -117,7 +165,9 @@ animation:pop 0.3s ease;
 }
 
 
+
 @keyframes pop{
+
 
 0%{
 
@@ -125,17 +175,20 @@ transform:scale(0);
 
 }
 
+
 80%{
 
 transform:scale(1.1);
 
 }
 
+
 100%{
 
 transform:scale(1);
 
 }
+
 
 }
 
@@ -144,6 +197,7 @@ transform:scale(1);
 /* 揺れ */
 
 .shake{
+
 
 animation:shake 0.8s ease;
 
@@ -199,6 +253,8 @@ transform:rotate(0deg);
 }
 
 
+
+
 </style>
 
 
@@ -231,6 +287,7 @@ alt="マスコット">
 
 
 
+
 <script>
 
 
@@ -242,7 +299,8 @@ const message=document.getElementById("message");
 
 
 
-// 吹き出し表示関数
+
+// 吹き出し表示
 
 function showBalloon(text){
 
@@ -273,7 +331,8 @@ balloon.classList.remove("show");
 
 
 
-// 揺れ関数
+
+// 揺れ
 
 function shakeMascot(){
 
@@ -306,17 +365,23 @@ shakeMascot();
 
 
 
+
 // クリック時
 
 const words=[
 
+
 "ようこそ",
+
 
 "2026年でデビュー35周年",
 
+
 "二胡レッスン！",
 
+
 "ニコニコ"
+
 
 ];
 
@@ -347,5 +412,6 @@ shakeMascot();
 
 
 </body>
+
 
 </html>
