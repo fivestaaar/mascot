@@ -1,180 +1,434 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Erhu Mascot</title>
+
 
 <style>
 
+
 body{
+
     margin:0;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     height:100vh;
+
     background:transparent;
+
 }
+
+
 
 #container{
+
     position:relative;
+
     display:inline-block;
+
 }
 
+
+
 #mascot{
+
     width:180px;
+
     cursor:pointer;
+
 }
+
+
+
+/* 吹き出し */
 
 #balloon{
 
+
     position:absolute;
-    top:-40px;
-    left:120px;
 
-    background:white;
-    padding:10px 15px;
 
-    border-radius:15px;
+    top:-70px;
 
-    border:2px solid #666;
+
+    left:100px;
+
+
+    background:#fffaf0;
+
+
+    padding:12px 18px;
+
+
+    border-radius:25px;
+
+
+    border:3px solid #d8a45d;
+
 
     font-size:18px;
 
-    display:block;
+
+    font-weight:bold;
+
+
+    color:#7a4b20;
+
+
+    display:none;
+
+
+    box-shadow:0 5px 10px rgba(0,0,0,0.15);
+
+
+    transform:scale(0);
+
+
+    transform-origin:bottom left;
+
 
 }
+
+
 
 #balloon::after{
 
+
     content:"";
+
 
     position:absolute;
 
-    left:15px;
 
-    bottom:-12px;
+    left:25px;
 
-    border-width:12px 12px 0 12px;
+
+    bottom:-15px;
+
+
+    border-width:15px 15px 0 15px;
+
 
     border-style:solid;
 
-    border-color:white transparent transparent transparent;
 
-}
+    border-color:#d8a45d transparent transparent transparent;
 
-    @keyframes shake {
-
-0%{
-transform:rotate(0deg);
-}
-
-25%{
-transform:rotate(5deg);
-}
-
-50%{
-transform:rotate(0deg);
-}
-
-75%{
-transform:rotate(-5deg);
-}
-
-100%{
-transform:rotate(0deg);
-}
 
 }
 
 
-.shake{
 
-animation:shake 3s ease-in-out;
+/* 吹き出し登場 */
+
+@keyframes pop{
+
+
+    0%{
+
+        transform:scale(0);
+
+    }
+
+
+    70%{
+
+        transform:scale(1.15);
+
+    }
+
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
 
 }
+
 
 
 .show{
 
-display:block !important;
+    display:block !important;
+
+    animation:pop 0.4s ease;
 
 }
 
+
+
+/* 初回ゆらゆら */
+
+@keyframes shake{
+
+
+    0%{
+
+        transform:translateY(0) rotate(0deg);
+
+    }
+
+
+    25%{
+
+        transform:translateY(-8px) rotate(5deg);
+
+    }
+
+
+    50%{
+
+        transform:translateY(0) rotate(0deg);
+
+    }
+
+
+    75%{
+
+        transform:translateY(-5px) rotate(-5deg);
+
+    }
+
+
+    100%{
+
+        transform:translateY(0) rotate(0deg);
+
+    }
+
+
+}
+
+
+
+.shake{
+
+    animation:shake 3s ease;
+
+}
+
+
+
+/* クリックジャンプ */
+
+.jump{
+
+
+    animation:jump 0.5s ease;
+
+
+}
+
+
+
+@keyframes jump{
+
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+
+    50%{
+
+        transform:translateY(-20px);
+
+    }
+
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+
+}
+
+
 </style>
+
 
 </head>
 
+
+
 <body>
+
 
 <div id="container">
 
+
 <img
+
 id="mascot"
+
 src="mascot.jpeg"
-alt="マスコット">
+
+alt="マスコット"
+
+
+
+>
+
+
 
 <div id="balloon">
 
 <span id="message">你好</span>
 
-</div>
 
 </div>
 
-    <script>
+
+
+</div>
+
+
+
+
+
+<script>
+
 
 const mascot = document.getElementById("mascot");
+
 const balloon = document.getElementById("balloon");
+
 const message = document.getElementById("message");
 
 
+
+
+
+// 初回表示
+
 window.onload=function(){
 
-balloon.classList.add("show");
 
-mascot.classList.add("shake");
+    mascot.classList.add("shake");
 
 
-setTimeout(function(){
+    balloon.classList.add("show");
 
-balloon.classList.remove("show");
 
-},3000);
+
+    setTimeout(function(){
+
+
+        balloon.classList.remove("show");
+
+
+    },3000);
+
+
 
 };
 
+
+
+
+
+
+// クリック時の言葉
 
 
 const words=[
 
-"ようこそ",
 
-"2026年で35周年",
+    "ようこそ",
 
-"二胡レッスン！",
 
-"ニコニコ"
+    "2026年で35周年",
+
+
+    "二胡レッスン！",
+
+
+    "ニコニコ"
+
 
 ];
 
 
+
+
+
+
 mascot.onclick=function(){
 
-const random=Math.floor(
-Math.random()*words.length
-);
 
 
-message.textContent=words[random];
+    const random=Math.floor(
 
-balloon.classList.add("show");
+        Math.random()*words.length
+
+    );
+
+
+
+    message.textContent=words[random];
+
+
+
+    // ジャンプ再実行
+
+    mascot.classList.remove("jump");
+
+
+    void mascot.offsetWidth;
+
+
+    mascot.classList.add("jump");
+
+
+
+    // 吹き出し再表示
+
+    balloon.classList.remove("show");
+
+
+    void balloon.offsetWidth;
+
+
+    balloon.classList.add("show");
+
+
+
+
+    setTimeout(function(){
+
+
+        balloon.classList.remove("show");
+
+
+    },3000);
+
+
 
 };
 
 
+
 </script>
 
+
+
 </body>
+
 
 </html>
