@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erhu Mascot</title>
+
+<style>
+
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:transparent;
+}
+
+#container{
+    position:relative;
+    display:inline-block;
+}
+
+#mascot{
+    width:180px;
+    cursor:pointer;
+}
+
+#balloon{
+
+    position:absolute;
+    top:-40px;
+    left:120px;
+
+    background:white;
+    padding:10px 15px;
+
+    border-radius:15px;
+
+    border:2px solid #666;
+
+    font-size:18px;
+
+    display:none;
+
+}
+
+#balloon::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:15px;
+
+    bottom:-12px;
+
+    border-width:12px 12px 0 12px;
+
+    border-style:solid;
+
+    border-color:white transparent transparent transparent;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="container">
+
+<img
+id="mascot"
+src="mascot.jpeg"
+alt="マスコット">
+
+<div id="balloon">
+
+你好
+
+</div>
+
+</div>
+
+</body>
+
+</html>
